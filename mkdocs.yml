@@ -1,0 +1,100 @@
+site_name: EXM 커뮤니티 지식창고
+site_description: EXM 커뮤니티를 이용하는 데 있어 필요한 정보를 알려드립니다
+site_author: EXM 서버
+copyright: Copyright &copy; 2022
+
+# Navigation
+nav:
+  - EXM 소개:
+      - index.md
+      - 시즌 안내:
+          - season/index.md
+          - 시즌 8 소개: season/season8.md
+  - 커뮤니티 규칙:
+    - rule/index.md
+    - 초대 규칙: rule/invite.md
+  - 서버 이용 안내:
+      - guide/index.md
+      - 명령어: guide/commands.md
+      - 배낭: guide/backpack.md
+      - 상점: guide/shop.md
+      - 영역 보호: guide/grief-prevention.md 
+      - 이전 시즌 맵 다운로드: guide/maps.md
+  - 서버 기부 안내: donation/index.md
+  - 서버 디스코드: discord/index.md
+
+# Theme Configuration
+theme:
+  name: material
+  language: kr
+  custom_dir: overrides
+  favicon: asset/logo.png
+  features:
+    - header.autohide
+    - navigation.indexes
+    - nagivation.tabs.sticky
+    - nagivation.top
+    - navigation.instant
+    - navigation.sections
+    - navigation.tabs
+    - navigation.tracking
+  font:
+    text: Noto Sans KR
+    code: Nanum Gothic Coding
+  logo: asset/logo.png
+  palette:
+    scheme: slate  # dark theme
+    primary: indigo
+    accent: light green
+
+extra_css:
+  - https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/styles/vs2015.min.css
+  - asset/extra.css
+extra_javascript:
+  - https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/highlight.min.js
+  - https://cdn.jsdelivr.net/npm/tablesort@latest/src/tablesort.min.js
+  - asset/config.js
+plugins:
+  - search
+
+# Markdown Extensions Configuration
+markdown_extensions:
+  # Extensions used by default: meta, toc, tables, fenced_code
+
+  # https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown/
+  - markdown.extensions.abbr:
+  - markdown.extensions.admonition:
+  - markdown.extensions.attr_list:
+  - markdown.extensions.def_list:
+  - markdown.extensions.footnotes:
+  - markdown.extensions.meta:
+  - markdown.extensions.md_in_html:
+  - markdown.extensions.nl2br:
+  - markdown.extensions.sane_lists:
+  - markdown.extensions.tables:
+  - markdown.extensions.toc:
+      title: '목차'
+      permalink: true
+  - markdown.extensions.wikilinks:
+
+  # https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret:
+  - pymdownx.details:
+  - pymdownx.emoji:
+  - pymdownx.highlight:
+      linenums_style: pymdownx.inline
+      use_pygments: false
+  - pymdownx.inlinehilite:
+  - pymdownx.keys:
+  - pymdownx.mark:
+  - pymdownx.progressbar:
+  - pymdownx.saneheaders:
+  - pymdownx.smartsymbols:
+  - pymdownx.snippets:
+  - pymdownx.superfences:
+  - pymdownx.tabbed:
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde:
