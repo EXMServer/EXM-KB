@@ -1,5 +1,7 @@
 ---
 title: 서버 기부 안내
+hide:
+  - navigation
 ---
 # EXM 서버 기부 안내
 EXM 서버는 사비로 운영되는 서버입니다.

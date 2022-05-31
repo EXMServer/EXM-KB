@@ -1,7 +1,11 @@
 @charset 'utf-8';
 
 .md-grid {
-  max-width: 1200px; /* max-width: initial; */
+  max-width: 1440px; /* max-width: initial; */
+}
+
+.md-typeset {
+  font-size: 0.85rem;
 }
 
 .md-typeset h1 {
@@ -13,11 +17,11 @@
   margin-top: 0;
 }
 
-.md-typeset, .md-typeset .admonition, .md-typeset details, .md-typeset code {
-  font-size: 0.85rem;
-}
 .md-typeset .footnote {
   font-size: 0.75rem;
+}
+.md-typeset :is(.admonition, details, code) {
+  font-size: 0.9em;
 }
 
 /* circle thing */
@@ -92,37 +96,37 @@
   );
   background-size: 2rem 2rem;
 }
-.md-typeset .progress-100plus .progress-bar {
-  background-color: var(--md-progress-100);
-}
-.md-typeset .progress-80plus .progress-bar {
-  background-color: var(--md-progress-80);
-}
-.md-typeset .progress-60plus .progress-bar {
-  background-color: var(--md-progress-60);
-}
-.md-typeset .progress-40plus .progress-bar {
-  background-color: var(--md-progress-40);
-}
-.md-typeset .progress-20plus .progress-bar {
-  background-color: var(--md-progress-20);
-}
-.md-typeset .progress-0plus .progress-bar {
-  background-color: var(--md-progress-0);
-}
+.md-typeset .progress-100plus .progress-bar { background-color: var(--md-progress-100); }
+.md-typeset .progress-80plus .progress-bar { background-color: var(--md-progress-80); }
+.md-typeset .progress-60plus .progress-bar { background-color: var(--md-progress-60); }
+.md-typeset .progress-40plus .progress-bar { background-color: var(--md-progress-40); }
+.md-typeset .progress-20plus .progress-bar { background-color: var(--md-progress-20); }
+.md-typeset .progress-0plus .progress-bar { background-color: var(--md-progress-0); }
 @-webkit-keyframes animate-stripes {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 6rem 0;
-  }
+  0% { background-position: 0 0; }
+  100% { background-position: 6rem 0; }
 }
 @keyframes animate-stripes {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 6rem 0;
-  }
+  0% { background-position: 0 0; }
+  100% { background-position: 6rem 0; }
+}
+
+/* Privacy */
+.privacy {
+  font-size: .64rem;
+  margin: auto 0.6rem;
+  padding: 0.4rem 0;
+  white-space: nowrap;
+}
+@media screen and (min-width: 45em) {
+  .privacy { padding: 0.6rem 0; }
+}
+.privacy__link {
+  display: inline-block;
+  /*height: 1.6rem;*/
+  text-align: center;
+  /*width: 1.6rem;*/
+}
+.privacy__link:before {
+  line-height: 1.9;
 }
