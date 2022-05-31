@@ -13,3 +13,6 @@ jobs:
           python-version: 3.x
       - run: pip install mkdocs-material
       - run: mkdocs gh-deploy --force
+      - uses: creyD/prettier_action@v4.2
+        with:
+          prettier_options: --write **/*.{js,css,html}
