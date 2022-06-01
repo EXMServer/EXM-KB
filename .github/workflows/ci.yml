@@ -7,12 +7,21 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v3
+      - name: Checkout latest commit
+        uses: actions/checkout@v3
+      - name: Prepare Python
+        uses: actions/setup-python@v3
         with:
           python-version: 3.x
-      - run: pip install mkdocs-material
-      - run: mkdocs gh-deploy --force
-      - uses: creyD/prettier_action@v4.2
+      - name: Prepare Node.js
+        uses: actions/setup-node@v3
         with:
-          prettier_options: --write **/*.{js,css,html}
+          node-version: 16
+      - name: Install requirements
+      - run: |
+          pip install mkdocs-material
+          npm install --location=global js-beautify
+      - name: Build website
+        run: mkdocs gh-deploy --force
+      - name: Beautify files
+        run: find . -type f \( -name "*.html" -or -name "*.css" -or -name "*.js" \) -exec js-beautify {} \
