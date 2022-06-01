@@ -28,10 +28,11 @@ jobs:
       - name: Beautify files
         run: | 
           echo "Beautify files"
-          js-beautify -r ./site/**/*.js
-          css-beautify -r ./site/**/*.css
-          html-beautify -r ./site/**/*.html
-      - name: Save changes
+          git checkout gh-pages
+          find . -type f -name *.js -exec js-beautify -r '{}' --config .jsbeautify.json \;
+          find . -type f -name *.css -exec css-beautify -r '{}' --config .jsbeautify.json \;
+          find . -type f -name *.html -exec html-beautify -r '{}' --config .jsbeautify.json \;
+      - name: Save changes to gh-pages branch
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Apply beautified files
