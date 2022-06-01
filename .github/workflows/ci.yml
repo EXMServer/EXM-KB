@@ -31,3 +31,7 @@ jobs:
           js-beautify -r **/*.js
           css-beautify -r **/*.css
           html-beautify -r **/*.html
+      - name: Save changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Apply beautified files
