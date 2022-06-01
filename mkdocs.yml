@@ -28,7 +28,7 @@ theme:
   name: material
   language: kr
   custom_dir: overrides
-  favicon: asset/logo.png
+  favicon: assets/logo.png
   features:
     - header.autohide
     - navigation.indexes
@@ -41,7 +41,7 @@ theme:
   font:
     text: Noto Sans KR
     code: Nanum Gothic Coding
-  logo: asset/logo.png
+  logo: assets/logo.png
   palette:
     scheme: slate  # dark theme
     primary: indigo
@@ -49,11 +49,11 @@ theme:
 
 extra_css:
   - https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/styles/vs2015.min.css
-  - asset/extra.css
+  - assets/extra.css
 extra_javascript:
   - https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/highlight.min.js
   - https://cdn.jsdelivr.net/npm/tablesort@latest/src/tablesort.min.js
-  - asset/config.js
+  - assets/config.js
 plugins:
   - search
 
