@@ -24,4 +24,4 @@ jobs:
       - name: Build website
         run: mkdocs gh-deploy --force
       - name: Beautify files
-        run: find . -type f \( -name "*.html" -or -name "*.css" -or -name "*.js" \) -exec js-beautify {} \
+        run: find . -type f \( -name "*.html" -or -name "*.css" -or -name "*.js" \) -exec js-beautify '{}' \;
