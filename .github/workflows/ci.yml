@@ -22,7 +22,7 @@ jobs:
           echo "Installing mkdocs-material"
           pip install mkdocs-material
           echo "Installing js-beautify"
-          npm install --location=global js-beautify --no-fund
+          npm install -g --location=global js-beautify --no-fund
       - name: Build website
         run: mkdocs gh-deploy --force
       - name: Beautify files
