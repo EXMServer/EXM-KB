@@ -19,9 +19,12 @@ jobs:
           node-version: 16
       - name: Install requirements
         run: |
+          echo "Installing mkdocs-material"
           pip install mkdocs-material
-          npm install --location=global js-beautify
+          echo "Installing js-beautify"
+          npm install --location=global js-beautify --no-fund
       - name: Build website
         run: mkdocs gh-deploy --force
       - name: Beautify files
-        run: find . -type f \( -name "*.html" -or -name "*.css" -or -name "*.js" \) -exec js-beautify '{}' \;
+        run: | 
+          find . -type f \( -name "*.html" -or -name "*.css" -or -name "*.js" \) -exec echo '{}' \; -exec /usr/local/bin/js-beautify '{}' \;
