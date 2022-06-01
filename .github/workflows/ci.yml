@@ -27,4 +27,7 @@ jobs:
         run: mkdocs gh-deploy --force
       - name: Beautify files
         run: | 
-          find . -type f \( -name "*.html" -or -name "*.css" -or -name "*.js" \) -exec echo '{}' \; -exec /usr/local/bin/js-beautify '{}' \;
+          echo "Beautify files"
+          js-beautify -r **/*.js
+          css-beautify -r **/*.css
+          html-beautify -r **/*.html
