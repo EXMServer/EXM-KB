@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 16
       - name: Install requirements
-      - run: |
+        run: |
           pip install mkdocs-material
           npm install --location=global js-beautify
       - name: Build website
