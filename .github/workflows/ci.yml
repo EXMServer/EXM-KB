@@ -4,7 +4,8 @@ on:
     branches:
       - main
 jobs:
-  deploy:
+  build:
+    name: Build GitHub Pages
     runs-on: ubuntu-latest
     steps:
       - name: Checkout latest commit
@@ -13,11 +14,7 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: 3.x
-      - name: Prepare Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: Install requirements
+      - name: Install requirements (mkdocs-material)
         run: |
           echo "Installing mkdocs-material"
           pip install mkdocs-material
@@ -25,12 +22,29 @@ jobs:
           npm install -g --location=global js-beautify --no-fund
       - name: Build website
         run: mkdocs gh-deploy --force
+  modify:
+    name: Modify Generated Files
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout latest commit of gh-pages
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+      - name: Prepare Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install requirements (js-beautify)
+        run: |
+          echo "Installing js-beautify"
+          npm install -g --location=global js-beautify --no-fund
       - name: Beautify files
         run: | 
           echo "Beautify files"
           git checkout gh-pages
-          find . -type f -name '*.js' -exec js-beautify -r '{}' --config jsbeautify.json --preserve-newlines false \;
-          find . -type f -name '*.css' -exec css-beautify -r '{}' --config jsbeautify.json --preserve-newlines false \;
+          find . -type f -name '*.js' ! -name '*.min.js' -exec js-beautify -r '{}' --config jsbeautify.json --preserve-newlines false \;
+          find . -type f -name '*.css' ! -name '*.min.css' -exec css-beautify -r '{}' --config jsbeautify.json --preserve-newlines false \;
           find . -type f -name '*.html' -exec html-beautify -r '{}' --config jsbeautify.json --preserve-newlines false \;
       - name: Manually set CNAME
         run: |
@@ -41,3 +55,41 @@ jobs:
         with:
           commit_message: Apply beautified files
           branch: gh-pages
+  publish:
+    name: Publish GitHub Pages
+    runs-on: ubuntu-latest
+    needs: modify
+    steps:
+      - name: Checkout latest commit of gh-pages
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+          submodules: recursive
+      - name: Upload page artifact
+        uses: actions/upload-pages-artifact@v0
+        with:
+          path: .
+      - name: Upload artifact
+        uses: actions/upload-artifact@main
+        with:
+          name: github-pages
+          path: /home/runner/work/_temp/artifact.tar
+          retention-days: 1
+  report:
+    name: Report telemetry
+    runs-on: ubuntu-latest
+    needs: publish
+    steps:
+      - name: Report build status
+        uses: actions/deploy-pages@v1
+        with:
+          emit_telemetry: true
+  deploy:
+    name: Deploy GitHub Pages
+    runs-on: ubuntu-latest
+    needs: publish
+    steps:
+      - name: Deploy GitHub Pages
+        uses: actions/deploy-pages@v1
+        with:
+          emit_telemetry: false
