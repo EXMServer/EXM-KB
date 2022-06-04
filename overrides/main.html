@@ -1,55 +1,91 @@
 {% extends "base.html" %}
 
-<!-- Site Meta -->
+<!-- HTML Meta Tags (Except Title) -->
 {% block site_meta %}
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {% if page and page.meta and page.meta.description %}
+    <meta name="description" content="{{ page.meta.description }}" />
+  {% elif config.site_description %}
+    <meta name="description" content="{{ config.site_description }}" />
+  {% endif %}
 
-<!-- Page description -->
-{% if page and page.meta and page.meta.description %}
-<meta name="description" content="{{ page.meta.description }}" />
-<meta property="og:description" content="{{ page.meta.description }}" />
-{% elif config.site_description %}
-<meta name="description" content="{{ config.site_description }}" />
-<meta property="og:description" content="{{ config.site_description }}" />
-{% endif %}
+  <!-- Facebook (Open Graph) Meta Tags -->
+  <!-- <meta property="og:url" content=""> -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR" />
 
-<!-- Page author -->
-{% if page and page.meta and page.meta.author %}
-<meta name="author" content="{{ page.meta.author }}" />
-{% elif config.site_author %}
-<meta name="author" content="{{ config.site_author }}" />
-{% endif %}
+  {% if page and page.meta and page.meta.title %}
+    <meta property="og:title" content="{{ page.meta.title }} - {{ config.site_name }}">
+  {% elif page and page.title and not page.is_homepage %}
+    <meta property="og:title" content="{{ page.title | striptags }} - {{ config.site_name }}">
+  {% else %}
+    <meta property="og:title" content="{{ config.site_name }}">
+  {% endif %}
 
-<!-- Open Graph -->
-<meta property="og:type" content="website" />
-{% if page.og_image %}
-<meta property="og:image" content="{{ page.og_image }}" />
-{% else %}
-<meta property="og:image" content="/assets/header.png" />
-{% endif %}
-<meta property="og:locale" content="ko_KR" />
+  {% if page and page.meta and page.meta.description %}
+    <meta property="og:description" content="{{ page.meta.description }}" />
+  {% elif config.site_description %}
+    <meta property="og:description" content="{{ config.site_description }}" />
+  {% endif %}
 
-<!-- Canonical -->
-{% if page.canonical_url %}
-<link rel="canonical" href="{{ page.canonical_url }}" />
-{% endif %}
+  {% if page.og_image %}
+    <meta property="og:image" content="{{ page.og_image }}" />
+  {% else %}
+    <meta property="og:image" content="/assets/header.png" />
+  {% endif %}
 
-<!-- Favicon -->
-<link rel="icon" href="{{ config.theme.favicon | url }}" />
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:domain" content="exm.haipa.xyz">
+  <!-- <meta property="twitter:url" content="">  -->
 
-<!-- Generator banner -->
-<meta name="generator" content="mkdocs-{{ mkdocs_version }}, $md-name$-$md-version$" />
+  {% if page and page.meta and page.meta.title %}
+    <meta name="twitter:title" content="{{ page.meta.title }} - {{ config.site_name }}">
+  {% elif page and page.title and not page.is_homepage %}
+    <meta name="twitter:title" content="{{ page.title | striptags }} - {{ config.site_name }}">
+  {% else %}
+    <meta name="twitter:title" content="{{ config.site_name }}">
+  {% endif %}
+
+  {% if page and page.meta and page.meta.description %}
+    <meta name="twitter:description" content="{{ page.meta.description }}" />
+  {% elif config.site_description %}
+    <meta name="twitter:description" content="{{ config.site_description }}" />
+  {% endif %}
+
+  {% if page.og_image %}
+    <meta name="twitter:image" content="{{ page.og_image }}" />
+  {% else %}
+    <meta name="twitter:image" content="/assets/header.png" />
+  {% endif %}
+
+  <!-- Page author -->
+  {% if page and page.meta and page.meta.author %}
+  <meta name="author" content="{{ page.meta.author }}" />
+  {% elif config.site_author %}
+  <meta name="author" content="{{ config.site_author }}" />
+  {% endif %}
+
+  <!-- Canonical -->
+  {% if page.canonical_url %}
+  <link rel="canonical" href="{{ page.canonical_url }}" />
+  {% endif %}
+
+  <!-- Favicon -->
+  <link rel="icon" href="{{ config.theme.favicon | url }}" />
+
+  <!-- Generator banner -->
+  <meta name="generator" content="mkdocs-{{ mkdocs_version }}, $md-name$-$md-version$" />
 {% endblock %}
 
-<!-- Site Title -->
-{% block htmltitle %} {% if page and page.meta and page.meta.title %}
-<title>{{ page.meta.title }} - {{ config.site_name }}</title>
-<meta property="og:title" content="{{ page.meta.title }}" />
-{% elif page and page.title and not page.is_homepage %}
-<title>{{ page.title | striptags }} - {{ config.site_name }}</title>
-<meta property="og:title" content="{{ page.title | striptags }}" />
-{% else %}
-<title>{{ config.site_name }}</title>
-<meta property="og:title" content="{{ config.site_name }}" />
-{% endif %} {% endblock %}
+<!-- HTML Meta Tag (Title Only) -->
+{% block htmltitle %}
+  {% if page and page.meta and page.meta.title %}
+    <title>{{ page.meta.title }} - {{ config.site_name }}</title>
+  {% elif page and page.title and not page.is_homepage %}
+    <title>{{ page.title | striptags }} - {{ config.site_name }}</title>
+  {% else %}
+    <title>{{ config.site_name }}</title>
+  {% endif %}
+{% endblock %}
