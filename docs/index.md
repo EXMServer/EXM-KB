@@ -2,7 +2,7 @@
 title: EXM 커뮤니티 지식창고
 description: "EXM 커뮤니티를 소개합니다"
 ---
-![Header](header.png)
+![Header](/assets/header_slim.png)
 
 # EXM 커뮤니티에 오신 것을 환영합니다
 EXM 커뮤니티에 오신 것을 환영합니다.
