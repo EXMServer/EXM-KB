@@ -49,14 +49,18 @@ jobs:
           commit_message: Apply beautified files
           branch: gh-pages
   publish:
-   name: Publish GitHub Pages
-   runs-on: ubuntu-latest
-   needs: modify
-   steps:
-     - name: Deploy GitHub Pages
-       uses: JamesIves/github-pages-deploy-action@v4
-       with:
-         branch: gh-pages
-         folder: .
-         clean-exclude: |
-           CNAME
+    name: Publish GitHub Pages
+    runs-on: ubuntu-latest
+    needs: modify
+    steps:
+    - name: Checkout latest commit of gh-pages
+      uses: actions/checkout@v3
+      with:
+        ref: gh-pages
+    - name: Deploy GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        branch: gh-pages
+        folder: .
+        clean-exclude: |
+          CNAME
