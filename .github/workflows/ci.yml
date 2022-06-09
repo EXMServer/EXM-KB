@@ -49,7 +49,7 @@ jobs:
         with:
           commit_message: Apply beautified files
           branch: gh-pages
-          file_pattern: *.js *.html *.css
+          file_pattern: ./*.js ./*.html ./*.css
   publish:
     name: Publish GitHub Pages
     runs-on: ubuntu-latest
