@@ -32,7 +32,7 @@
   {% if page.og_image %}
     <meta property="og:image" content="{{ page.og_image }}" />
   {% else %}
-    <meta property="og:image" content="/assets/header.png" />
+    <meta property="og:image" content="{{ site_url }}assets/header.png" />
   {% endif %}
 
   <!-- Twitter Meta Tags -->
@@ -57,7 +57,7 @@
   {% if page.og_image %}
     <meta name="twitter:image" content="{{ page.og_image }}" />
   {% else %}
-    <meta name="twitter:image" content="/assets/header.png" />
+    <meta name="twitter:image" content="{{ site_url }}assets/header.png" />
   {% endif %}
 
   <!-- Page author -->

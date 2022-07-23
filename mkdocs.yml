@@ -1,6 +1,7 @@
 site_name: EXM 커뮤니티 지식창고
 site_description: EXM 커뮤니티를 이용하는 데 있어 필요한 정보를 알려드립니다
 site_author: EXM 서버
+site_url: https://exmserver.github.io/EXM-KB/
 copyright: Copyright &copy; 2022
 
 # Navigation
@@ -18,7 +19,8 @@ nav:
       - 명령어: guide/commands.md
       - 배낭: guide/backpack.md
       - 상점: guide/shop.md
-      - 영역 보호: guide/grief-prevention.md 
+      - 영역 보호: guide/grief-prevention.md
+      - HardPlus: guide/hardplus.md
       - 이전 시즌 맵 다운로드: guide/maps.md
   - 서버 기부 안내: donation/index.md
   - 서버 디스코드: discord/index.md
