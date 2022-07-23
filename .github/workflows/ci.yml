@@ -33,9 +33,10 @@ jobs:
           node-version: 16
       - name: Install requirements (js-beautify)
         run: npm install -g --location=global js-beautify --no-fund
+      - name: Download JS Beautify config file
+        run: wget -O jsbeautify.json https://raw.githubusercontent.com/EXMServer/EXM-KB/main/jsbeautify.json
       - name: Beautify files
         run: | 
-          git checkout gh-pages
           find . -type f -name '*.js' ! -name '*.min.js' -exec js-beautify -r '{}' --config jsbeautify.json \;
           find . -type f -name '*.css' ! -name '*.min.css' -exec css-beautify -r '{}' --config jsbeautify.json \;
           find . -type f -name '*.html' -exec html-beautify -r '{}' --config jsbeautify.json \;
@@ -48,6 +49,7 @@ jobs:
         with:
           commit_message: Apply beautified files
           branch: gh-pages
+          file_pattern: ./*.js ./*.html ./*.css
   publish:
     name: Publish GitHub Pages
     runs-on: ubuntu-latest
